@@ -1,0 +1,4 @@
+monitor_configs:
+  server: ["www.google.com"]
+  duration: 20
+  port: 8000
