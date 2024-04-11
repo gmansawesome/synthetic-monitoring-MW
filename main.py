@@ -58,6 +58,7 @@ def main():
     website = config_data["monitor_configs"]["website"]
     duration = config_data["monitor_configs"]["duration"]
     port = config_data["monitor_configs"]["port"]
+    sleep = config_data["monitor_configs"]["sleep"]
 
     # starting up local server
     start_http_server(port)
@@ -69,15 +70,15 @@ def main():
     transmitter.destination = website
     transmitter.count = duration
 
-    # running ping and parsing result
-    result = transmitter.ping()
-    parsed_result = ping_parser.parse(result).as_dict()
-
-    # outputting parsed data
-    print(json.dumps(parsed_result, indent=4))
-
     while True:
+        # running ping and parsing result
+        result = transmitter.ping()
+        parsed_result = ping_parser.parse(result).as_dict()
+
+        # outputting parsed data
+        # print(json.dumps(parsed_result, indent=4))
+
         assign_metrics(parsed_result)
-        time.sleep(4)
+        time.sleep(sleep)
 
 main()
