@@ -4,6 +4,7 @@ from prometheus_client import start_http_server, Gauge
 import yaml
 import time
 
+# yaml file reader
 def read_config(config_path): 
     try:
         with open(config_path, 'r') as file:
@@ -27,7 +28,8 @@ rtt_min = Gauge('rtt_min', "Round trip time min")
 rtt_avg = Gauge('rtt_avg', "Round trip time avg")
 rtt_max = Gauge('rtt_max', "Round trip time max")
 
-def get_metrics(parsed_results):
+# assigns metrics from parsed results into prometheus metrics objects
+def assign_metrics(parsed_results):
     # assign metric values while ensuring they exist
     if parsed_results["packet_transmit"] is not None:
         packet_transmit.set(parsed_results["packet_transmit"])
@@ -75,6 +77,7 @@ def main():
     print(json.dumps(parsed_result, indent=4))
 
     while True:
-        get_metrics(parsed_result)
+        assign_metrics(parsed_result)
+        time.sleep(4)
 
 main()
