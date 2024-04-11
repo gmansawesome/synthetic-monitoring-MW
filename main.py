@@ -2,6 +2,7 @@ import json
 import pingparsing
 from prometheus_client import start_http_server, Gauge
 import yaml
+import time
 
 def read_config(config_path): 
     try:
@@ -15,6 +16,18 @@ def read_config(config_path):
     except yaml.YAMLError as error:
         print("Error occured!")
         print(error)
+
+# initialize metrics
+packet_transmit = Gauge('packet_transmit', "Packets Trasmitted") 
+packet_receive = Gauge('packet_receive', "Packets Recieved")
+packet_loss_count = Gauge("packet_loss_count", "Packets Loss Count")
+packet_loss_rate = Gauge("packet_loss_rate", "Packet Loss Rate")
+def get_metrics(parsed_results):
+    # assign metric values
+    packet_transmit.set(parsed_results["packet_transmit"])
+    packet_receive.set(parsed_results["packet_receive"])
+    packet_loss_count.set(parsed_results["packet_loss_count"])
+    packet_loss_rate.set(parsed_results["packet_loss_rate"])
 
 
 def main():
@@ -42,5 +55,8 @@ def main():
 
     # outputting parsed data
     print(json.dumps(parsed_result, indent=4))
+
+    while True:
+        get_metrics(parsed_result)
 
 main()
