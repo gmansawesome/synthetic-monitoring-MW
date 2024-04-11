@@ -18,25 +18,29 @@ def read_config(config_path):
 
 
 def main():
+    # read data from config file
     config_data = read_config("config.yml")
-    print(config_data)
 
-    # ping_latency_avg = Gauge('ping_latency_avg_ms', 'Average round-trip time (RTT) in milliseconds')
-    # ping_packet_loss_rate = Gauge('ping_packet_loss_rate', 'Ping packet loss rate')
+    # syntactic sugar for config variables
+    website = config_data["monitor_configs"]["website"]
+    duration = config_data["monitor_configs"]["duration"]
+    port = config_data["monitor_configs"]["port"]
 
-    # ping_parser = pingparsing.PingParsing()
-    # transmitter = pingparsing.PingTransmitter()
-    # transmitter.destination = "google.com"
-    # transmitter.count = 10
-    # result = transmitter.ping()
+    # starting up local server
+    start_http_server(port)
+    print(f"Local HTTP server started on port {port}")
 
-    # parsed_data = ping_parser.parse(result).as_dict()
+    # setting up ping entity
+    ping_parser = pingparsing.PingParsing()
+    transmitter = pingparsing.PingTransmitter()
+    transmitter.destination = website
+    transmitter.count = duration
 
-    # ping_latency_avg.set(4.2).labels("/fooBar")
-    # ping_packet_loss_rate.set(4.2).labels("/fooBar")
+    # running ping and parsing result
+    result = transmitter.ping()
+    parsed_result = ping_parser.parse(result).as_dict()
 
-    # start_http_server(8000)
-
-    # print(json.dumps(parsed_data, indent=4))
+    # outputting parsed data
+    print(json.dumps(parsed_result, indent=4))
 
 main()
