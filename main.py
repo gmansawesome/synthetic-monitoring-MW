@@ -14,7 +14,6 @@ def read_config(config_path):
         print("File not found!")
 
     except yaml.YAMLError as error:
-        print("Error occured!")
         print(error)
 
 # initialize metrics
@@ -22,13 +21,32 @@ packet_transmit = Gauge('packet_transmit', "Packets Trasmitted")
 packet_receive = Gauge('packet_receive', "Packets Recieved")
 packet_loss_count = Gauge("packet_loss_count", "Packets Loss Count")
 packet_loss_rate = Gauge("packet_loss_rate", "Packet Loss Rate")
-def get_metrics(parsed_results):
-    # assign metric values
-    packet_transmit.set(parsed_results["packet_transmit"])
-    packet_receive.set(parsed_results["packet_receive"])
-    packet_loss_count.set(parsed_results["packet_loss_count"])
-    packet_loss_rate.set(parsed_results["packet_loss_rate"])
+packet_duplicate_count = Gauge("packet_duplicate_count", "Packet Duplicate Count")
+packet_duplicate_rate = Gauge("packet_duplicate_rate", "Packet Duplicate Rate")
+rtt_min = Gauge('rtt_min', "Round trip time min")
+rtt_avg = Gauge('rtt_avg', "Round trip time avg")
+rtt_max = Gauge('rtt_max', "Round trip time max")
 
+def get_metrics(parsed_results):
+    # assign metric values while ensuring they exist
+    if parsed_results["packet_transmit"] is not None:
+        packet_transmit.set(parsed_results["packet_transmit"])
+    if parsed_results["packet_receive"] is not None:
+        packet_receive.set(parsed_results["packet_receive"])
+    if parsed_results["packet_loss_count"] is not None:
+        packet_loss_count.set(parsed_results["packet_loss_count"])
+    if parsed_results["packet_loss_rate"] is not None:
+        packet_loss_rate.set(parsed_results["packet_loss_rate"])
+    if parsed_results["rtt_min"] is not None:
+        rtt_min.set(parsed_results["rtt_min"])
+    if parsed_results["rtt_avg"] is not None:
+        rtt_avg.set(parsed_results["rtt_avg"])
+    if parsed_results["rtt_max"] is not None:
+        rtt_max.set(parsed_results["rtt_max"])
+    if parsed_results["packet_duplicate_count"] is not None:
+        packet_duplicate_count.set(parsed_results["packet_duplicate_count"])
+    if parsed_results["packet_duplicate_rate"] is not None:
+        packet_duplicate_rate.set(parsed_results["packet_duplicate_rate"])
 
 def main():
     # read data from config file
