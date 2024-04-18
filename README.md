@@ -19,16 +19,15 @@ pip install pingparsing
 
 #### Prometheus Install:
 
-[Prometheus](https://prometheus.io/download/){:target="_blank"} Select the latest release for your OS 
+<a href="https://prometheus.io/download/" target="_blank">Prometheus</a> Select the latest release for your OS 
 
 Follow setup instructions and test if working by running "prometheus.exe" and going to http://localhost:9090/
 
 #### Grafana Install:
 
-[Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/){:target="_blank"} Select the latest release for your OS
+<a href="https://grafana.com/docs/grafana/latest/setup-grafana/installation/" target="_blank">Grafana</a> Select the latest release for your OS
 
 Once installed test if working by going to http://localhost:3000/
-
 
 ## Usage
 The platform consists of 3 key components: the ping monitor, Prometheus, and Grafana. These components communicate and share data through localhost instances. By default, ping monitor sends data into
