@@ -36,6 +36,6 @@ First, adjust the settings of the ping monitor, navigate to config.yml in the mo
 
 Once desired settings are configured, run "main.py" and "prometheus.exe". Navigate to the localhost for prometheus and select Status -> Targets to confirm it's reading from your ping monitor localhost.
 
-https://imgur.com/a/uxwO6mL
+![system diagram](http://i.imgur.com/a/uxwO6mL.jpg)
 
 Finally, you can go to the Grafana localhost and sign in with Username: Admin, Password: Admin. Add prometheus as a data source, and create a new dashboard to begin visualizing using your data.
