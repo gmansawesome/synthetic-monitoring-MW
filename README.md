@@ -29,6 +29,5 @@ Follow setup instructions and test if working by running "prometheus.exe" and go
 
 Once installed test if working by going to http://localhost:3000/
 
-
 ## Usage
 The platform consists of 3 key components: the ping monitor, Prometheus, and Grafana. These components communicate and share data through localhost instances. By default, ping monitor sends data into
