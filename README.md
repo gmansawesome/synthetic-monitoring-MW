@@ -8,7 +8,7 @@ A synthetic monitoring platform provides insights into network connectivity, lat
 ## Setup
 An IDE that works with Python is needed. This project was built in VS Code using Python 3.12.2.
 
-You will need to install the Ping Parsing library, Prometheus, and Grafana, as well as make a Grafana account.
+You will need to install the Ping Parsing library, Prometheus, and Grafana.
 
 #### Ping Parsing Install:
 
