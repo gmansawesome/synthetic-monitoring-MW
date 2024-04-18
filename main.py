@@ -76,7 +76,7 @@ def main():
         parsed_result = ping_parser.parse(result).as_dict()
 
         # outputting parsed data
-        # print(json.dumps(parsed_result, indent=4))
+        print(json.dumps(parsed_result, indent=4))
 
         assign_metrics(parsed_result)
         time.sleep(sleep)

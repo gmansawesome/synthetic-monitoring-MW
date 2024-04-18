@@ -2,4 +2,4 @@ monitor_configs:
   website: "www.google.com"
   duration: 10
   port: 8000
-  sleep: 4
+  sleep: 5
