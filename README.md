@@ -29,6 +29,7 @@ Follow setup instructions and test if working by running "prometheus.exe" and go
 
 Once installed test if working by going to http://localhost:3000/
 
+
 ## Usage
 The platform consists of 3 key components: the ping monitor, Prometheus, and Grafana. These components communicate and share data through localhost instances. By default, ping monitor sends data into localhost:8000, prometheus at localhost:9090, and Grafana at localhost:3000.
 
@@ -36,6 +37,7 @@ First, adjust the settings of the ping monitor, navigate to config.yml in the mo
 
 Once desired settings are configured, run "main.py" and "prometheus.exe". Navigate to the localhost for prometheus and select Status -> Targets to confirm it's reading from your ping monitor localhost.
 
-![system diagram](http://i.imgur.com/a/uxwO6mL.jpg)
-
 Finally, you can go to the Grafana localhost and sign in with Username: Admin, Password: Admin. Add prometheus as a data source, and create a new dashboard to begin visualizing using your data.
+
+## System Diagram
+![system diagram](https://github.com/gmansawesome/synthetic-monitoring-MW/assets/45411978/b3d342cd-a04e-49fe-a439-926ffe316ab0)
